@@ -7,12 +7,15 @@ notesRouter.get('/', async (request, response) => {
 })
 
 notesRouter.get('/:id', async (request, response) => {
-  const note = await Note.findById(request.params.id)
-  if (note) {
-    response.json(note.toJSON())
-  } else {
-    response.status(404).end()
+  if (request.params.id.match(/^[0-9a-fA-F]{24}$/)) {
+    const note = await Note.findById(request.params.id)
+    if (note) {
+      response.json(note.toJSON())
+    } else {
+      response.status(404).end()
+    }
   }
+  response.status(400).end()
 })
 
 notesRouter.delete('/:id', async (request, response) => {
@@ -23,9 +26,9 @@ notesRouter.delete('/:id', async (request, response) => {
 notesRouter.post('/', async (request, response) => {
   const body = request.body
 
-  // if (!body.content) {
-  //   return response.status(400).json({ error: 'content missing' })
-  // }
+  if (!body.content) {
+    return response.status(400).json({ error: 'content missing' })
+  }
 
   const note = new Note({
     content: body.content,
