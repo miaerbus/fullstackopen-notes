@@ -1,7 +1,8 @@
-POST http://localhost:3001/api/notes/
+POST http://localhost:3001/api/notes
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1sdXVra2FpIiwiaWQiOiI1ZTlhY2ExZjYzYzNlYjY1ZjE0NTBkNjUiLCJpYXQiOjE1ODcyMzYzNDJ9.e4VMZ5WTt_I6_qc94KZ_IQDr783JZwKr7dXwB2HFXn8
 
 {
-    "content": "Just a test",
+    "content": "1 Single page apps use token authentication VScode",
     "important": false
 }
